@@ -30,6 +30,9 @@ namespace QuickBuy.Dominio.Entidades
 
 			if (string.IsNullOrEmpty(CEP))
 				AdicionarMensagem("CEP inválido, favor preencher!");
+
+			if (FormaPagamentoId == 0)
+				AdicionarMensagem("Não foi informada a forma de pagamento, verifique!");
 		}
 	}
 }

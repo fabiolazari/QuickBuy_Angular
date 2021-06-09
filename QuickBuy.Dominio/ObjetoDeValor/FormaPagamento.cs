@@ -30,8 +30,8 @@ namespace QuickBuy.Dominio.ObjetoDeValor
 
 		public override void Validate()
 		{
-			throw new NotImplementedException();
+			if (string.IsNullOrEmpty(Nome))
+				AdicionarMensagem("O campo nome deve ser informado, verifique!");
 		}
 	}
-
 }
