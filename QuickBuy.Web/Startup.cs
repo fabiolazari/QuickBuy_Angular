@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using QuickBuy.Repositorio.Contexto;
 using Microsoft.EntityFrameworkCore;
+using QuickBuy.Dominio.Contratos;
+using QuickBuy.Repositorio.Repositorios;
 
 namespace QuickBuy.Web
 {
@@ -33,6 +35,11 @@ namespace QuickBuy.Web
                 option.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString),
                                     m => m.MigrationsAssembly("QuickBuy.Repositorio"));
                 });
+
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+            services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
+            services.AddScoped<IPedidoRepositorio, PedidoRepositorio>();
+            services.AddScoped<IFormaPagamentoRepositorio, FormaPagamentoRepositorio>();
 
             services.AddSpaStaticFiles(configuration =>
             {
@@ -76,7 +83,7 @@ namespace QuickBuy.Web
                 if (env.IsDevelopment())
                 {
                     //spa.UseAngularCliServer(npmScript: "start");
-                    //@"C:\ws-Angular\QuickBuy\QuickBuy.Web\ClientApp\"
+                   // @"C:\ws-Angular\QuickBuy\QuickBuy.Web\ClientApp\"
                 }
             });
         }
