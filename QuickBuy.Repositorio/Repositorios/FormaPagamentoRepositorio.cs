@@ -1,18 +1,13 @@
 ﻿using QuickBuy.Dominio.Contratos;
-using QuickBuy.Dominio.Entidades;
 using QuickBuy.Dominio.ObjetoDeValor;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using QuickBuy.Repositorio.Contexto;
 
 namespace QuickBuy.Repositorio.Repositorios
 {
-	public class FormaPagamentoRepositorio //: IBaseRepositorio<FormaPagamento>, IUsuarioRepositorio
+	public class FormaPagamentoRepositorio : BaseRepositorio<FormaPagamento>, IFormaPagamentoRepositorio
 	{
-		public FormaPagamentoRepositorio()
+		public FormaPagamentoRepositorio(QuickBuyContexto quickBuyContexto) : base(quickBuyContexto)
 		{
-
 		}
-
 	}
 }
