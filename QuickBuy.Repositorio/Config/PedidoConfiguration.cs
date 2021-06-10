@@ -19,26 +19,32 @@ namespace QuickBuy.Repositorio.Config
 			builder
 				.Property(p => p.CEP)
 				.IsRequired()
-				.HasMaxLength(10)
-				.HasColumnType("nvarchar");
+				.HasMaxLength(10);
 			builder
 				.Property(p => p.Estado)
 				.IsRequired()
-				.HasMaxLength(50)
-				.HasColumnType("nvarchar");
+				.HasMaxLength(50);
 			builder
 				.Property(p => p.Cidade)
 				.IsRequired()
-				.HasMaxLength(50)
-				.HasColumnType("nvarchar");
+				.HasMaxLength(50);
 			builder
 				.Property(p => p.EnderecoCompleto)
 				.IsRequired()
-				.HasMaxLength(100)
-				.HasColumnType("nvarchar");
+				.HasMaxLength(100);
 			builder
 				.Property(p => p.NumeroEndereco)
 				.IsRequired();
+
+			builder.HasOne(p => p.FormaPagamento);
+
+			builder.HasOne(p => p.Usuario)
+				   .WithMany(u => u.Pedidos)
+				   .HasForeignKey(p => p.UsuarioId)
+				   .HasPrincipalKey(u => u.Id);
+
+			//builder.HasMany(p => p.ItensPedido)
+			//	   .WithOne(it => it.Pedido);
 
 			builder.ToTable("Pedido");
 		}

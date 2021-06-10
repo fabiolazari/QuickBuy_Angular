@@ -18,6 +18,11 @@ namespace QuickBuy.Repositorio.Config
 				.Property(p => p.Quantidade)
 				.IsRequired();
 
+			builder.HasOne(ip => ip.Pedido)
+				   .WithMany(p => p.ItensPedido)
+			       .HasForeignKey(ip => ip.PedidoId)
+			       .HasPrincipalKey(p => p.Id);
+
 			builder.ToTable("ItemPedido");
 		}
 	}

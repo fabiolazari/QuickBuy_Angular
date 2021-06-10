@@ -28,10 +28,11 @@ namespace QuickBuy.Web
             services.AddControllersWithViews();
 
             var connectionString = Configuration.GetConnectionString("QuickBuyDb");
-            services.AddDbContext<QuickBuyContexto>(Option =>
-                                                        Option.UseMySql(connectionString, 
-                                                            ServerVersion.AutoDetect(connectionString),
-                                                                m => m.MigrationsAssembly("QuickBuy.Repositorio")));
+            services.AddDbContext<QuickBuyContexto>(option => {
+                option.UseLazyLoadingProxies();
+                option.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString),
+                                    m => m.MigrationsAssembly("QuickBuy.Repositorio"));
+                });
 
             services.AddSpaStaticFiles(configuration =>
             {
