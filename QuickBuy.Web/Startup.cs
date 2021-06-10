@@ -5,30 +5,40 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using QuickBuy.Repositorio.Contexto;
+using Microsoft.EntityFrameworkCore;
 
 namespace QuickBuy.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup()
         {
-            Configuration = configuration;
+            // IConfiguration configuration
+            var builder = new ConfigurationBuilder();
+            builder.AddJsonFile("config.json", optional:false, reloadOnChange: true);
+
+            Configuration = builder.Build(); //configuration;
         }
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            // In production, the Angular files will be served from this directory
+
+            var connectionString = Configuration.GetConnectionString("QuickBuyDb");
+            services.AddDbContext<QuickBuyContexto>(Option =>
+                                                        Option.UseMySql(connectionString, 
+                                                            ServerVersion.AutoDetect(connectionString),
+                                                                m => m.MigrationsAssembly("QuickBuy.Repositorio")));
+
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -38,7 +48,6 @@ namespace QuickBuy.Web
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -60,7 +69,6 @@ namespace QuickBuy.Web
 
             app.UseSpa(spa =>
             {
-                //Indicar serer local do Angular, já rodando manualmente pelo CLI...
                 spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
                 spa.Options.SourcePath = "ClientApp";
 
