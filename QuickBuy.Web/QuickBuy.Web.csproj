@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\model\usuario.ts" />
     <None Remove="ClientApp\src\app\produto\produto.component.ts" />
   </ItemGroup>
 
