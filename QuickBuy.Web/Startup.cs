@@ -77,13 +77,13 @@ namespace QuickBuy.Web
 
             app.UseSpa(spa =>
             {
-                spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
                 spa.Options.SourcePath = "ClientApp";
 
                 if (env.IsDevelopment())
                 {
                     //spa.UseAngularCliServer(npmScript: "start");
-                   // @"C:\ws-Angular\QuickBuy\QuickBuy.Web\ClientApp\"
+                    // @"C:\ws-Angular\QuickBuy\QuickBuy.Web\ClientApp\"
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
                 }
             });
         }
