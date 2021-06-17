@@ -8,18 +8,21 @@ import { Usuario } from "../../model/usuario";
 })
 export class UsuarioServico {
 
-  private baseURL: string
+  private baseURL: string;
+
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.baseURL = baseUrl;
   }
 
   public verificarUsuario(usuario: Usuario): Observable<Usuario> {
-    const headers = new HttpHeaders().set('content-type', 'applicatiom/json');
+
+    const headers = new HttpHeaders().set('Accept', 'applicatiom/json');
+
     var body = {
       email: usuario.email,
       senha: usuario.senha
     }
 
-    return this.http.post<Usuario>(this.baseURL + "api/usuario", body, { headers });
+    return this.http.post<Usuario>(this.baseURL + "api/usuario/verificarUsuario", body, { headers });
   }
 }

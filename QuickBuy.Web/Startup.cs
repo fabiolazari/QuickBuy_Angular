@@ -28,7 +28,7 @@ namespace QuickBuy.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            
             var connectionString = Configuration.GetConnectionString("QuickBuyDb");
             services.AddDbContext<QuickBuyContexto>(option => {
                 option.UseLazyLoadingProxies();

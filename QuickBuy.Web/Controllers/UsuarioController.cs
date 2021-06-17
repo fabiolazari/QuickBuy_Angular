@@ -4,6 +4,7 @@ using System;
 
 namespace QuickBuy.Web.Controllers
 {
+	[Route("api/[Controller]")]
 	public class UsuarioController : Controller
 	{
 		[HttpGet]
@@ -33,7 +34,7 @@ namespace QuickBuy.Web.Controllers
 		}
 
 		[HttpPost("VerificarUsuario")]
-		public ActionResult VerficiarUsuario([FromBody] Usuario usuario)
+		public ActionResult VerificarUsuario([FromBody] Usuario usuario)
 		{
 			try
 			{

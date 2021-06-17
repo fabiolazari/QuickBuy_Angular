@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { Usuario } from "../../model/usuario";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UsuarioServico } from "../../servicos/usuario/usuario.servico";
-import { error } from "console";
 
 @Component({
   selector: "app-login",
@@ -13,13 +12,13 @@ import { error } from "console";
 export class LoginComponent implements OnInit {
   public usuario;
   public returnUrl: string;
-  //public usuarioAutenticado: boolean;
-  //public usuarios = ["usuario1", "usuario2", "usuario3", "usuario4", "usuario5"];
+  public mensagem: string;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private usuarioServico: UsuarioServico) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,
+          private usuarioServico: UsuarioServico) {
   }
 
-  ngOnInit() : void {
+  ngOnInit(): void {
     this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'];
     this.usuario = new Usuario();
   }
@@ -28,21 +27,23 @@ export class LoginComponent implements OnInit {
 
     this.usuarioServico.verificarUsuario(this.usuario)
       .subscribe(
-      data => {
+        data => {
+          // Essa linha será executada no caso de retorno sem erro
+          console.log(data);
+          var usuarioRetorno: Usuario;
+          usuarioRetorno = data;
+          sessionStorage.setItem("usuario-autenticado", "1");
+          sessionStorage.setItem("email-usuario", usuarioRetorno.email);
 
-      },
-      error = > {
-
-      }
-    );
-
-    /*if (this.usuario.email == "fabio@gmail.com" && this.usuario.senha == "123456") {
-      sessionStorage.setItem("usuario-autenticado", "1");
-      this.router.navigate([this.returnUrl]);
-    }*/
+          if (this.returnUrl == null) {
+            this.router.navigate(['/']);
+          } else {
+            this.router.navigate([this.returnUrl]);
+          }
+        },
+        err => {
+          this.mensagem = err.error;
+        }
+      );
   }
 }
-
-
-
-
