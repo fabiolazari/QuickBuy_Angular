@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   public usuario;
   public returnUrl: string;
   public mensagem: string;
+  private ativarSpinner: boolean;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
           private usuarioServico: UsuarioServico) {
@@ -25,15 +26,18 @@ export class LoginComponent implements OnInit {
 
   entrar() {
 
+    this.ativarSpinner = true;
+
     this.usuarioServico.verificarUsuario(this.usuario)
       .subscribe(
-        data => {
+        usuario_json => {
           // Essa linha será executada no caso de retorno sem erro
-          console.log(data);
-          var usuarioRetorno: Usuario;
-          usuarioRetorno = data;
-          sessionStorage.setItem("usuario-autenticado", "1");
-          sessionStorage.setItem("email-usuario", usuarioRetorno.email);
+          //var usuarioRetorno: Usuario;
+          //usuarioRetorno = data;
+          //sessionStorage.setItem("usuario-autenticado", "1");
+          //sessionStorage.setItem("email-usuario", usuarioRetorno.email);
+
+          this.usuarioServico.usuario = usuario_json;
 
           if (this.returnUrl == null) {
             this.router.navigate(['/']);
@@ -42,7 +46,9 @@ export class LoginComponent implements OnInit {
           }
         },
         err => {
+          console.log("Error: " + err.error);
           this.mensagem = err.error;
+          this.ativarSpinner = false;
         }
       );
   }
