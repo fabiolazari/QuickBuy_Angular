@@ -1,8 +1,9 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
   selector: "app-produto",
-  template: "<html><body>Nome Produto: {{ obterNome() }}</body></html>"
+  templateUrl: "./produto.component.html",
+  styleUrls: ["./produto.component.css"]
 })
 
 export class ProdutoComponent { //Nome classe com maíusculo - PascalCase
@@ -11,9 +12,6 @@ export class ProdutoComponent { //Nome classe com maíusculo - PascalCase
   public nome: string;
   public liberadoParaVenda: boolean;
 
-  public obterNome() : string {
-    return "Samsung";
-  }
 
 
 }
