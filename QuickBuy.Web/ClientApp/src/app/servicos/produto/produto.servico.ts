@@ -23,7 +23,7 @@ export class ProdutoServico {
       preco: produto.preco
     }
 
-    return this.http.post<Produto>(this.baseURL + "api/produto/cadastrar", body, { headers })
+    return this.http.post<Produto>(this.baseURL + "api/produto/cadastrar", body, { headers });
   }
 
   public salvar(produto: Produto): Observable<Produto> {
@@ -35,7 +35,7 @@ export class ProdutoServico {
       preco: produto.preco
     }
 
-    return this.http.post<Produto>(this.baseURL + "api/produto/salvar", body, { headers })
+    return this.http.post<Produto>(this.baseURL + "api/produto/salvar", body, { headers });
   }
 
   public deletar(produto: Produto): Observable<Produto> {
@@ -47,6 +47,6 @@ export class ProdutoServico {
       preco: produto.preco
     }
 
-    return this.http.post<Produto>(this.baseURL + "api/produto/deletar", body, { headers })
+    return this.http.post<Produto>(this.baseURL + "api/produto/deletar", body, { headers });
   }
 }
