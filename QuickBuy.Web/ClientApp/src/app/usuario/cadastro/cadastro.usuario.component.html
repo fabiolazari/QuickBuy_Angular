@@ -1,6 +1,6 @@
 <div class="text-center">
   <form class="form-signin">
-    <h1 class="h4 mb-2 login">Login do Cliente</h1>
+    <h1 class="h4 mb-2 login">Criar conta</h1>
     <label for="inputEmail" class="sr-only">Email</label>
     <input class="form-control mb-2"
            [ngClass]="{
@@ -22,6 +22,7 @@
         Email está no formato inválido, verifique!
       </div>
     </div>
+
     <label for="inputSenha" class="sr-only">Senha</label>
     <input class="form-control mb-2"
            [ngClass]="{
@@ -40,12 +41,51 @@
         Senha deve ser informada!
       </div>
     </div>
-    <button class="btn btn-primary btn-block" type="submit" (click)="entrar()" [disabled]="ativarSpinner">
+
+    <label for="inputNome" class="sr-only">Nome</label>
+    <input class="form-control mb-2"
+           [ngClass]="{
+            'is-invalid': nome.invalid && (nome.dirty || nome.touched),
+            'is-valid': nome.valid && (nome.dirty || nome.touched)
+           }"
+           type="text"
+           id="inputNome"
+           name="nome" placeholder="Nome"
+           [(ngModel)]="usuario.nome"
+           #nome="ngModel"
+           required />
+    <div class="invalid-feedback mb-2" *ngIf="nome.invalid && (nome.dirty || nome.touched)">
+      <div *ngIf="nome.errors.required">
+        O campo Nome é de preenchimento obrigatório!
+      </div>
+    </div>
+
+    <label for="inputSobrenome" class="sr-only">Sobrenome</label>
+    <input class="form-control mb-2"
+           [ngClass]="{
+            'is-invalid': sobrenome.invalid && (sobrenome.dirty || sobrenome.touched),
+            'is-valid': sobrenome.valid && (sobrenome.dirty || sobrenome.touched)
+           }"
+           type="text"
+           id="inputSobrenome"
+           name="sobrenome" placeholder="Sobrenome"
+           [(ngModel)]="usuario.sobrenome"
+           #sobrenome="ngModel"
+           required />
+    <div class="invalid-feedback mb-2" *ngIf="sobrenome.invalid && (sobrenome.dirty || sobrenome.touched)">
+      <div *ngIf="sobrenome.errors.required">
+        O campo Sobrenome é de preenchimento obrigatório!
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-block" type="submit" (click)="cadastrar()" [disabled]="ativarSpinner">
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativarSpinner"></span>
-      Entrar
+      Salvar
     </button>
 
-    <div>Novo por aqui? <a [routerLink]='["/novo-usuario"]'>Cadastre-se</a> </div>
+    <div>
+      <a [routerLink]='["/entrar"]'>Voltar</a>
+    </div>
 
     <div class="alert alert-danger" *ngIf="mensagem">
       {{ mensagem }}

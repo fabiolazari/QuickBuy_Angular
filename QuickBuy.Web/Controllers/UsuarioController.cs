@@ -29,7 +29,7 @@ namespace QuickBuy.Web.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Post()
+		public ActionResult Post([FromBody] Usuario usuario)
 		{
 			try
 			{
