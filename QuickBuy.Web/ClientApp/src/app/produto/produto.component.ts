@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { Produto } from "../model/Produto";
+import { ProdutoServico } from "../servicos/produto/produto.servico";
 
 @Component({
   selector: "app-produto",
@@ -6,12 +8,26 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./produto.component.css"]
 })
 
-export class ProdutoComponent { //Nome classe com maíusculo - PascalCase
+export class ProdutoComponent implements OnInit {
 
-  // padrão camelCase para variáveis atributos e funções
-  public nome: string;
-  public liberadoParaVenda: boolean;
+  public produto: Produto;
 
+  constructor(private produtoServico: ProdutoServico) {
+  }
+  
+  ngOnInit(): void {
+    this.produto = new Produto();
+  }
 
-
+  public cadastrar() {
+    this.produtoServico.cadastrar(this.produto)
+      .subscribe(
+        produtoJson => {
+          console.log(produtoJson);
+        },
+        err => {
+          console.log(err.error);
+        }
+      );
+  }
 }
