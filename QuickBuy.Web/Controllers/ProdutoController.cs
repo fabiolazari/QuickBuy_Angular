@@ -69,7 +69,7 @@ namespace QuickBuy.Web.Controllers
 					formFile.CopyTo(streamArquivo);
 				}
 
-				return Ok();
+				return Json(novoNomeArquivo);
 			}
 			catch (Exception ex)
 			{
@@ -81,7 +81,7 @@ namespace QuickBuy.Web.Controllers
 		{
 			char[] arrayNomeCompacto = Path.GetFileNameWithoutExtension(nomeArquivo).Take(10).ToArray();
 			string novoNomeArquivo = new string(arrayNomeCompacto).Replace(" ", "-");
-			novoNomeArquivo = $"{novoNomeArquivo}_{DateTime.Now.Year}{DateTime.Now.Month}{DateTime.Now.Day}.{extensao}";
+			novoNomeArquivo = $"{novoNomeArquivo}_{DateTime.Now.Year}{DateTime.Now.Month}{DateTime.Now.Day}{DateTime.Now.Hour}{DateTime.Now.Minute}.{extensao}";
 			return novoNomeArquivo;
 		}
 	}
