@@ -20,11 +20,9 @@
         [ngClass]="{ show: isExpanded }"
       >
         <ul class="navbar-nav flex-grow">
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <li class="nav-item"
+              [routerLinkActive]="['link-active']"
+              [routerLinkActiveOptions]="{ exact: true }">
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
@@ -33,8 +31,12 @@
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="!usuarioLogado()">
             <a class="nav-link text-dark" [routerLink]="['/entrar']">Entrar</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="usuarioLogado()">
-            <a class="nav-item nav-link text-dark" [routerLink]="['/sair']" (click)="sair()">Sair</a>
+          <li class="nav-item dropdown" *ngIf="usuarioLogado()">
+            <a class="nav-link text-dark dropdown-toggle" role="button" aria-haspopup="true" href="#"
+               aria-expanded="false" id="linkMenu" data-toggle="dropdown">{{usuario.email}}</a>
+            <ul class="dropdown-menu" aria-labelledby="linkMenu">
+              <li class="dropdown-item" role="menu" [routerLink]='["/sair"]' (click)="sair()">Sair</li>
+            </ul>
           </li>
         </ul>
       </div>

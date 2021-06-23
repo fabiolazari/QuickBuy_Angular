@@ -78,7 +78,7 @@
       </div>
     </div>
 
-    <button class="btn btn-primary btn-block" type="submit" (click)="cadastrar()" [disabled]="ativarSpinner">
+    <button class="btn btn-primary btn-block mb-3" type="submit" (click)="cadastrar()" [disabled]="ativarSpinner">
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativarSpinner"></span>
       Salvar
     </button>
@@ -90,8 +90,12 @@
     <div class="alert alert-danger" *ngIf="mensagem">
       {{ mensagem }}
     </div>
-    <img src="../../../assets/img/buy_img.jpg" />
 
+    <div class="alert alert-success" *ngIf="usuarioCadastrado">
+      Usuário cadastrado com sucesso!<a class="alert-link" [routerLink]='["/entrar"]'>Clique aqui</a> para entrar no sistema coma sua conta.
+    </div>
+
+    <img src="../../../assets/img/buy_img.jpg" />
     <!--
     <div class="alert alert-primary" role="alert" *ngIf="usuarioAutenticado">
       Usuario Autenticado!
