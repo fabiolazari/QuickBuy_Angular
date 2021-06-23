@@ -11,6 +11,7 @@ import { ProdutoServico } from "../servicos/produto/produto.servico";
 export class ProdutoComponent implements OnInit {
 
   public produto: Produto;
+  public arquivoSelecionado: File;
 
   constructor(private produtoServico: ProdutoServico) {
   }
@@ -24,6 +25,19 @@ export class ProdutoComponent implements OnInit {
       .subscribe(
         produtoJson => {
           console.log(produtoJson);
+        },
+        err => {
+          console.log(err.error);
+        }
+      );
+  }
+
+  public inputChange(files: FileList) {
+    this.arquivoSelecionado = files.item(0);
+    this.produtoServico.enviarArquivo(this.arquivoSelecionado)
+      .subscribe(
+        retorno => {
+          console.log(retorno);
         },
         err => {
           console.log(err.error);

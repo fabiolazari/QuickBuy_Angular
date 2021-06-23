@@ -9,6 +9,7 @@ using QuickBuy.Repositorio.Contexto;
 using Microsoft.EntityFrameworkCore;
 using QuickBuy.Dominio.Contratos;
 using QuickBuy.Repositorio.Repositorios;
+using Microsoft.AspNetCore.Http;
 
 namespace QuickBuy.Web
 {
@@ -28,7 +29,8 @@ namespace QuickBuy.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             var connectionString = Configuration.GetConnectionString("QuickBuyDb");
             services.AddDbContext<QuickBuyContexto>(option => {
                 option.UseLazyLoadingProxies();
