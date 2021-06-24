@@ -49,7 +49,7 @@ namespace QuickBuy.Web.Controllers
 				{
 					return BadRequest(produto.ObterMensagensValidacao());
 				}
-				//_produtoRepositorio.Adicionar(produto);
+				_produtoRepositorio.Adicionar(produto);
 				return Created("api/produto", produto);
 			}
 			catch (Exception ex)

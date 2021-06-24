@@ -24,7 +24,7 @@ namespace QuickBuy.Repositorio.Config
 				.HasMaxLength(50)
 				.HasColumnType("nvarchar");
 
-			//builder.ToTable("FormaPagamento");
+			builder.ToTable("FormaPagamento");
 		}
 	}
 }

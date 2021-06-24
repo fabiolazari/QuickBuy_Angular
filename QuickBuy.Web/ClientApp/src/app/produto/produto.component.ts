@@ -23,31 +23,45 @@ export class ProdutoComponent implements OnInit {
   }
 
   public cadastrar() {
+
+    this.ativarEspera();
     this.produtoServico.cadastrar(this.produto)
       .subscribe(
         produtoJson => {
           console.log(produtoJson);
+          this.desativarEspera();
         },
         err => {
           console.log(err.error);
           this.mensagem = err.error;
+          this.desativarEspera();
         }
       );
   }
 
   public inputChange(files: FileList) {
 
-    this.ativarSpinner = true;
+    this.ativarEspera();
     this.arquivoSelecionado = files.item(0);
+
     this.produtoServico.enviarArquivo(this.arquivoSelecionado)
       .subscribe(
         nomeArquivo => {
           this.produto.nomeArquivo = nomeArquivo;
-          this.ativarSpinner = true;
+          this.desativarEspera();
         },
         err => {
           console.log(err.error);
+          this.desativarEspera();
         }
       );
+  }
+
+  public ativarEspera() {
+    this.ativarSpinner = true;
+  }
+
+  public desativarEspera() {
+    this.ativarSpinner = false;
   }
 }
