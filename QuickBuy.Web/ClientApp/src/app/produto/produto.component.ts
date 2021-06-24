@@ -13,6 +13,7 @@ export class ProdutoComponent implements OnInit {
   public produto: Produto;
   public arquivoSelecionado: File;
   public ativarSpinner: boolean;
+  public mensagem: string;
 
   constructor(private produtoServico: ProdutoServico) {
   }
@@ -29,6 +30,7 @@ export class ProdutoComponent implements OnInit {
         },
         err => {
           console.log(err.error);
+          this.mensagem = err.error;
         }
       );
   }

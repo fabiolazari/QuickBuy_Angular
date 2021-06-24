@@ -20,11 +20,11 @@ export class ProdutoServico  implements OnInit {
   }
 
   get headers(): HttpHeaders {
-    return new HttpHeaders().set('Accept', 'application/json')
+    return new HttpHeaders().set('content-type', 'application/json')
   }
 
   public cadastrar(produto: Produto): Observable<Produto> {
-    return this.http.post<Produto>(this.baseURL + "api/produto/cadastrar", JSON.stringify(produto), { headers: this.headers });
+    return this.http.post<Produto>(this.baseURL + "api/produto", JSON.stringify(produto), { headers: this.headers });
   }
 
   public salvar(produto: Produto): Observable<Produto> {

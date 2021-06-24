@@ -27,13 +27,13 @@ namespace QuickBuy.Dominio.Entidades
 			LimparMensagensValidacao();
 
 			if (!ItensPedido.Any())
-				AdicionarMensagem("Critica: Pedido sem itens, verifique!");
+				AdicionarMensagem("Critica: Pedido sem itens, verifique");
 
 			if (string.IsNullOrEmpty(CEP))
-				AdicionarMensagem("CEP inválido, favor preencher!");
+				AdicionarMensagem("CEP inválido, favor preencher");
 
 			if (FormaPagamentoId == 0)
-				AdicionarMensagem("Não foi informada a forma de pagamento, verifique!");
+				AdicionarMensagem("Não foi informada a forma de pagamento, verifique");
 		}
 	}
 }
