@@ -31,6 +31,10 @@ export class UsuarioServico {
     this._usuario = null;
   }
 
+  public usuario_administrador(): boolean {
+    return this.usuario_autenticado() && this.usuario.ehAdministrador;
+  }
+  
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.baseURL = baseUrl;
   }
