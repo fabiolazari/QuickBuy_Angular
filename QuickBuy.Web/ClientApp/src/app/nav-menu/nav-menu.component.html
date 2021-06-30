@@ -38,6 +38,11 @@
               <li class="dropdown-item" role="menu" [routerLink]='["/sair"]' (click)="sair()">Sair</li>
             </ul>
           </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="temItensCarrinhoCompras()">
+            <a class="nav-link text-dark" [routerLink]="['/loja-efetivar']">
+              <img src="assets/img/shopping.png" style="width:32px;height:32px;"/>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
