@@ -15,9 +15,9 @@ var LojaCarrinhoCompras = /** @class */ (function () {
     };
     LojaCarrinhoCompras.prototype.obterProdutos = function () {
         var produtoLocalStorage = localStorage.getItem("produtoLocalStorage");
-        if (produtoLocalStorage) {
+        if (produtoLocalStorage)
             return JSON.parse(produtoLocalStorage);
-        }
+        return this.produtos;
     };
     LojaCarrinhoCompras.prototype.removerProduto = function (produto) {
         var produtoLocalStorage = localStorage.getItem("produtoLocalStorage");

@@ -45,6 +45,7 @@
     <None Remove="ClientApp\src\app\loja\produto\loja.produto.component.css" />
     <None Remove="ClientApp\src\app\loja\produto\loja.produto.component.html" />
     <None Remove="ClientApp\src\app\loja\produto\loja.produto.component.ts" />
+    <None Remove="ClientApp\src\app\model\pedido.ts" />
     <None Remove="ClientApp\src\app\model\produto.ts" />
     <None Remove="ClientApp\src\app\model\usuario.ts" />
     <None Remove="ClientApp\src\app\produto\pesquisa\pesquisa.produto.component.ts" />
@@ -93,6 +94,12 @@
   <ItemGroup>
     <Folder Include="ClientApp\src\app\usuario\login\" />
     <Folder Include="wwwroot\arquivos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Update="ClientApp\src\app\model\pedido.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

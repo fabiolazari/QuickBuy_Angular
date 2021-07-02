@@ -18,7 +18,6 @@ export class NavMenuComponent implements OnInit {
   }
 
   constructor(private router: Router, private usuarioServico: UsuarioServico) {
-
   }
 
   ngOnInit(): void {
