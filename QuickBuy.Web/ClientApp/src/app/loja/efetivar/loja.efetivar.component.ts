@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { ItemPedido } from "../../model/itemPedido";
+import { Pedido } from "../../model/pedido";
 import { Produto } from "../../model/Produto";
-import { ProdutoServico } from "../../servicos/produto/produto.servico";
+import { PedidoServico } from "../../servicos/pedido/pedido.servico";
+import { UsuarioServico } from "../../servicos/usuario/usuario.servico";
 import { LojaCarrinhoCompras } from "../carrinho-compras/loja.carrinho.compras";
 
 @Component({
@@ -21,8 +25,9 @@ export class LojaEfetivarComponent implements OnInit {
     this.atualizarTotal();
   }
 
-  constructor(private produtoServico: ProdutoServico) {
-
+  constructor(private usuarioServico: UsuarioServico,
+              private pedidoServico: PedidoServico,
+              private router: Router) {
   }
 
   public atualizarPreco(produto: Produto, quantidade: number) {
@@ -49,5 +54,45 @@ export class LojaEfetivarComponent implements OnInit {
 
   public efetivarCompra() {
 
+    this.pedidoServico.efetivarCompra(this.criarPedido())
+      .subscribe(
+        pedidoId => {
+          console.log(pedidoId);
+
+          sessionStorage.setItem("pedidoId", pedidoId.toString());
+          this.produtos = [];
+          this.carrinhoCompras.limparCarrinhoCompras();
+          this.router.navigate(["/compra-realizada-sucesso"]);
+        },
+        err => {
+          console.log(err.error);
+        }
+    );
+
+  }
+
+  public criarPedido(): Pedido {
+
+    let pedido = new Pedido();
+    pedido.usuarioId = this.usuarioServico.usuario.id;
+    pedido.cep = "17034290";
+    pedido.enderecoCompleto = "Rua Joaquim Marques de Figueiredo, casa 394";
+    pedido.numeroEndereco = 1455;
+    pedido.cidade = "Bauru";
+    pedido.estado = "SP";
+    pedido.dataPrevisaoEntrega = new Date();
+    pedido.formaPagamentoId = 1;
+    this.produtos = this.carrinhoCompras.obterProdutos();
+
+    for (let produto of this.produtos) {
+      let itemPedido = new ItemPedido();
+      itemPedido.produtoId = produto.id;
+      if (!produto.quantidade)
+        produto.quantidade = 1;
+      itemPedido.quantidade = produto.quantidade;
+      pedido.itensPedido.push(itemPedido);
+    }
+
+    return pedido;
   }
 }

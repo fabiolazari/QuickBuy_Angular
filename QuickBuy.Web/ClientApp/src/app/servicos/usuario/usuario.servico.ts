@@ -40,7 +40,7 @@ export class UsuarioServico {
   }
 
   get headers(): HttpHeaders {
-    return new HttpHeaders().set('content-type', 'application/json')
+    return new HttpHeaders().set('content-type', 'application/json');
   }
 
   public verificarUsuario(usuario: Usuario): Observable<Usuario> {

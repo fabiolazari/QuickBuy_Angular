@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="5.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.7">
       <PrivateAssets>all</PrivateAssets>
@@ -23,6 +24,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.0" />
   </ItemGroup>
 
@@ -36,6 +38,8 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\autorizacao\guarda.rotas.ts" />
     <None Remove="ClientApp\src\app\loja\carrinho-compras\loja.carrinho.compras.ts" />
+    <None Remove="ClientApp\src\app\loja\efetivar\loja.compra.realizada.component.html" />
+    <None Remove="ClientApp\src\app\loja\efetivar\loja.compra.realizada.component.ts" />
     <None Remove="ClientApp\src\app\loja\efetivar\loja.efetivar.component.css" />
     <None Remove="ClientApp\src\app\loja\efetivar\loja.efetivar.component.html" />
     <None Remove="ClientApp\src\app\loja\efetivar\loja.efetivar.component.ts" />
@@ -45,12 +49,14 @@
     <None Remove="ClientApp\src\app\loja\produto\loja.produto.component.css" />
     <None Remove="ClientApp\src\app\loja\produto\loja.produto.component.html" />
     <None Remove="ClientApp\src\app\loja\produto\loja.produto.component.ts" />
+    <None Remove="ClientApp\src\app\model\itemPedido.ts" />
     <None Remove="ClientApp\src\app\model\pedido.ts" />
     <None Remove="ClientApp\src\app\model\produto.ts" />
     <None Remove="ClientApp\src\app\model\usuario.ts" />
     <None Remove="ClientApp\src\app\produto\pesquisa\pesquisa.produto.component.ts" />
     <None Remove="ClientApp\src\app\produto\produto.component.html" />
     <None Remove="ClientApp\src\app\produto\produto.component.ts" />
+    <None Remove="ClientApp\src\app\servicos\pedido\pedido.servico.ts" />
     <None Remove="ClientApp\src\app\servicos\produto\produto.servico.ts" />
     <None Remove="ClientApp\src\app\servicos\usuario\usuario.servico.ts" />
     <None Remove="ClientApp\src\app\usuario\cadastro\cadastro.usuario.component.ts" />
@@ -61,6 +67,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\loja\efetivar\loja.compra.realizada.component.html">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\loja\efetivar\loja.efetivar.component.css">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -97,6 +106,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Update="ClientApp\src\app\model\itemPedido.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Update="ClientApp\src\app\model\pedido.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

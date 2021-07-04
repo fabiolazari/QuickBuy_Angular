@@ -13,10 +13,6 @@ export class NavMenuComponent implements OnInit {
   isExpanded = false;
   public carrinhoCompra: LojaCarrinhoCompras;
 
-  get usuario() {
-    return this.usuarioServico.usuario;
-  }
-
   constructor(private router: Router, private usuarioServico: UsuarioServico) {
   }
 
@@ -52,6 +48,10 @@ export class NavMenuComponent implements OnInit {
     this.usuarioServico.limpar_sessao();
     //sessionStorage.setItem("usuario-autenticado", "");
     this.router.navigate(['/']);
+  }
+
+  get usuario() {
+    return this.usuarioServico.usuario;
   }
 
   public temItensCarrinhoCompras(): boolean {

@@ -20,7 +20,7 @@ export class ProdutoServico  implements OnInit {
   }
 
   get headers(): HttpHeaders {
-    return new HttpHeaders().set('content-type', 'application/json')
+    return new HttpHeaders().set('content-type', 'application/json');
   }
 
   public cadastrar(produto: Produto): Observable<Produto> {

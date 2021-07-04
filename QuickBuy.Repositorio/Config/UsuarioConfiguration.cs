@@ -27,8 +27,8 @@ namespace QuickBuy.Repositorio.Config
 				.Property(u => u.SobreNome)
 				.HasMaxLength(50);
 
-			//builder.HasMany(u => u.Pedidos)
-			//	   .WithOne(p => p.Usuario);
+			builder.HasMany(u => u.Pedidos)
+				   .WithOne(p => p.Usuario);
 
 			builder.ToTable("Usuario");
 		}

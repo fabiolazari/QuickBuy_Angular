@@ -44,7 +44,6 @@ namespace QuickBuy.Web.Controllers
 			try
 			{
 				produto.Validate();
-
 				if(!produto.EhValido)
 				{
 					return BadRequest(produto.ObterMensagensValidacao());

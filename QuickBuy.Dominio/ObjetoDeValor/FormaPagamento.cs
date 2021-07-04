@@ -1,10 +1,9 @@
 ﻿using QuickBuy.Dominio.Entidades;
 using QuickBuy.Dominio.Enumerados;
-using System;
 
 namespace QuickBuy.Dominio.ObjetoDeValor
 {
-	public class FormaPagamento : Entidade
+	public class FormaPagamento
 	{
 		public int Id { get; set; }
 		public string Nome { get; set; }
@@ -26,12 +25,6 @@ namespace QuickBuy.Dominio.ObjetoDeValor
 		public bool NaoFoiDefinido
 		{
 			get { return Id == (int)TipoFormaPagamentoEnum.NaoDefinido; }
-		}
-
-		public override void Validate()
-		{
-			if (string.IsNullOrEmpty(Nome))
-				AdicionarMensagem("O campo nome deve ser informado, verifique!");
 		}
 	}
 }

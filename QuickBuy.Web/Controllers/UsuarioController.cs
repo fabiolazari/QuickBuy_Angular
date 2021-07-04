@@ -16,7 +16,7 @@ namespace QuickBuy.Web.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult Get()
+		public IActionResult Get()
 		{
 			try
 			{
@@ -29,13 +29,18 @@ namespace QuickBuy.Web.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Post([FromBody] Usuario usuario)
+		public IActionResult Post([FromBody] Usuario usuario)
 		{
 			try
 			{
 				var usuarioCadastrado = _usuarioRepositorio.Obter(usuario.Email);
 				if (usuarioCadastrado != null)
 					return BadRequest("Usuario já cadastrado no sistema!");
+
+				usuarioCadastrado.Validate();
+
+				if (!usuarioCadastrado.EhValido)
+					return BadRequest(usuarioCadastrado.ObterMensagensValidacao());
 
 				//usuario.EhAdministrador = true;
 				_usuarioRepositorio.Adicionar(usuario);
@@ -48,13 +53,11 @@ namespace QuickBuy.Web.Controllers
 		}
 
 		[HttpPost("VerificarUsuario")]
-		public ActionResult VerificarUsuario([FromBody] Usuario usuario)
+		public IActionResult VerificarUsuario([FromBody] Usuario usuario)
 		{
 			try
 			{
 				var usuarioRetorno = _usuarioRepositorio.Obter(usuario.Email, usuario.Senha);
-
-				//if (usuario.Email == "fabio@gmail.com" && usuario.Senha == "123456") 
 				if (usuarioRetorno != null)
 					return Ok(usuarioRetorno);
 

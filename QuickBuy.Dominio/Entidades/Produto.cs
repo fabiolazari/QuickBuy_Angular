@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace QuickBuy.Dominio.Entidades
+﻿namespace QuickBuy.Dominio.Entidades
 {
 	public class Produto : Entidade
 	{
@@ -16,8 +14,6 @@ namespace QuickBuy.Dominio.Entidades
 				AdicionarMensagem("Nome do produto não foi informado!");
 			if (string.IsNullOrEmpty(Descricao))
 				AdicionarMensagem("Descrição do produto não foi informado!");
-			if (Preco == 0)
-				AdicionarMensagem("O preço do produto deve ser informado, verifique!");
 		}
 	}
 }

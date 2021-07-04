@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using QuickBuy.Dominio.Entidades;
-using System;
 
 namespace QuickBuy.Repositorio.Config
 {
@@ -17,11 +16,6 @@ namespace QuickBuy.Repositorio.Config
 			builder
 				.Property(p => p.Quantidade)
 				.IsRequired();
-
-			builder.HasOne(ip => ip.Pedido)
-				   .WithMany(p => p.ItensPedido)
-			       .HasForeignKey(ip => ip.PedidoId)
-			       .HasPrincipalKey(p => p.Id);
 
 			builder.ToTable("ItemPedido");
 		}

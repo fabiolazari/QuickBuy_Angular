@@ -11,18 +11,15 @@ namespace QuickBuy.Repositorio.Config
 	{
 		public void Configure(EntityTypeBuilder<FormaPagamento> builder)
 		{
-			builder.HasKey(p => p.Id);
-
+			builder.HasKey(f => f.Id);
 			builder
-				.Property(p => p.Nome)
+				.Property(f => f.Nome)
 				.IsRequired()
-				.HasMaxLength(20)
-				.HasColumnType("nvarchar");
+				.HasMaxLength(50);
 			builder
-				.Property(p => p.Descricao)
+				.Property(f => f.Descricao)
 				.IsRequired()
-				.HasMaxLength(50)
-				.HasColumnType("nvarchar");
+				.HasMaxLength(100);
 
 			builder.ToTable("FormaPagamento");
 		}

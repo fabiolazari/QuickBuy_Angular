@@ -24,7 +24,6 @@ export class LojaProdutoComponent implements OnInit {
   }
 
   constructor(private produtoServico: ProdutoServico, private router: Router) {
-
   }
 
   comprar() {

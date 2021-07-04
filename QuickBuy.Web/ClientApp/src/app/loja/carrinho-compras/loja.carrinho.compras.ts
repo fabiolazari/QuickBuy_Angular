@@ -37,4 +37,9 @@ export class LojaCarrinhoCompras {
     var itens = this.obterProdutos();
     return (itens.length > 0);
   }
+
+  public limparCarrinhoCompras() {
+    localStorage.setItem("produtoLocalStorage", "");
+  }
+
 }

@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using QuickBuy.Dominio.Contratos;
 using QuickBuy.Repositorio.Repositorios;
 using Microsoft.AspNetCore.Http;
+//using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 namespace QuickBuy.Web
 {
@@ -29,6 +30,12 @@ namespace QuickBuy.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            /*
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
+            */
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             var connectionString = Configuration.GetConnectionString("QuickBuyDb");
@@ -41,7 +48,6 @@ namespace QuickBuy.Web
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
             services.AddScoped<IPedidoRepositorio, PedidoRepositorio>();
-            services.AddScoped<IFormaPagamentoRepositorio, FormaPagamentoRepositorio>();
 
             services.AddSpaStaticFiles(configuration =>
             {

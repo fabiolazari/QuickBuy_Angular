@@ -37,15 +37,7 @@ namespace QuickBuy.Repositorio.Config
 				.IsRequired();
 
 			builder.HasOne(p => p.FormaPagamento);
-
-			builder.HasOne(p => p.Usuario)
-				   .WithMany(u => u.Pedidos)
-				   .HasForeignKey(p => p.UsuarioId)
-				   .HasPrincipalKey(u => u.Id);
-
-			//builder.HasMany(p => p.ItensPedido)
-			//	   .WithOne(it => it.Pedido);
-
+		
 			builder.ToTable("Pedido");
 		}
 	}

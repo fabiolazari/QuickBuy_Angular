@@ -9,7 +9,6 @@ namespace QuickBuy.Repositorio.Repositorios
 	{
 		public UsuarioRepositorio(QuickBuyContexto quickBuyContexto) : base(quickBuyContexto)
 		{
-			
 		}
 
 		public Usuario Obter(string email, string senha)
