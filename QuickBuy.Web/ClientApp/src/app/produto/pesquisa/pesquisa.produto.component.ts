@@ -10,7 +10,7 @@ import { ProdutoServico } from "../../servicos/produto/produto.servico";
 })
 export class PesquisaProdutoComponent implements OnInit {
 
-  private produtos: Produto[];
+  public produtos: Produto[];
 
   constructor(private produtoServico: ProdutoServico, private router: Router) {
     this.produtoServico.obterTodosProdutos()
